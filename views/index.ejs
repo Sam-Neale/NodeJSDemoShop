@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <%- include('components/header.ejs') %>
+    <main class="px-5">
+        <h1>Products</h1>
+        <div class="row row-cols-3 g-4">
+            <% items.forEach(item =>{%>
+                <div class="col">
+                    <div class="form-control text-center p-3 h-100 w-100 position-relative">
+                        <table id="container" class="h-100 w-100" style="border-collapse: collapse;">
+                            <tr class="w-100">
+                                <td valign="top" class="w-100">
+                                    <i class="bi bi-<%= item.icon%> display-4"></i>
+                                    <h3>
+                                        <%= item.name%>
+                                    </h3>
+                                    <h5>$<%= item.cost%>
+                                    </h5>
+                                </td>
+                            </tr>
+                            <tr class="w-100">
+                                <td valign="bottom">
+                                    <form action="/addToCart" method="POST">
+                                        <input type="hidden" name="itemID" value="<%= item.id %>">
+                                        <button class="btn btn-primary w-100"><i class="bi bi-bag-plus"></i> Add to cart</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="position-relative h-100">
+                    
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </main>
+    <%- include('components/footer.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
